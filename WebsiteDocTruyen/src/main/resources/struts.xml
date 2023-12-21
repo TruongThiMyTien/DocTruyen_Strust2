@@ -1,0 +1,24 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+ 
+ <struts>
+	 <constant name="struts.devMode" value="true" />
+	 <package name="basicstruts2" extends="struts-default" strict-method-invocation="false">
+	 
+	 	<action name="">
+	 		<result>/WEB-INF/login.jsp</result>	 		
+	 	</action>
+	 	
+	 	<action name="LoginUser" class="Action.LoginAction" method="login">
+			<result name="loginFail">/WEB-INF/login.jsp</result>
+			<result name="admin" >/WEB-INF/admin/index.jsp</result>
+			<result name="nhanvien" >/WEB-INF/nhanvien/index.jsp</result>
+		 </action>
+		 <action name="*SachAction" class="Action.SachAction" method="{1}">		 
+			<result name="success">/WEB-INF/admin/sach/{1}.jsp</result>
+			<result name="list" type="redirect">listFoodAction</result>
+		</action>
+		
+	 </package>
+</struts>
