@@ -15,9 +15,10 @@
 			<result name="admin" >/WEB-INF/admin/index.jsp</result>
 			<result name="nhanvien" >/WEB-INF/nhanvien/index.jsp</result>
 		 </action>
+		 
 		 <action name="*SachAction" class="Action.SachAction" method="{1}">		 
 			<result name="success">/WEB-INF/admin/sach/{1}.jsp</result>
-			<result name="list" type="redirect">listFoodAction</result>
+			<result name="list" type="redirect">listSachAction</result>
 		</action>
 		
 	 </package>

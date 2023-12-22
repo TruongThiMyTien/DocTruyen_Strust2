@@ -1,14 +1,17 @@
 package Model;
 
+import DAO.TacGiaDAO;
+import DAO.TheLoaiDAO;
+
 public class Sach {
 	
 	int masach;
 	String tensach;
 	String anhdaidien;
 	int tinhtrang_full;
-	int tacgia;
+	TacGia tacgia;
 	String tomtat;
-	int theloai;
+	TheLoai theloai;
 	int kiemduyet;
 	int luotxem;
 	
@@ -19,9 +22,9 @@ public class Sach {
 		this.tensach = tensach;
 		this.anhdaidien = anhdaidien;
 		this.tinhtrang_full = tinhtrang_full;
-		this.tacgia = tacgia;
+		this.tacgia = TacGiaDAO.getTacGiaById(tacgia);
 		this.tomtat = tomtat;
-		this.theloai = theloai;
+		this.theloai = TheLoaiDAO.getTheLoaiById(theloai);
 		this.kiemduyet = kiemduyet;
 		this.luotxem = luotxem;
 	}
@@ -50,24 +53,30 @@ public class Sach {
 	public void setTinhtrang_full(int tinhtrang_full) {
 		this.tinhtrang_full = tinhtrang_full;
 	}
-	public int getTacgia() {
+		
+	public TacGia getTacgia() {
 		return tacgia;
 	}
-	public void setTacgia(int tacgia) {
+
+	public void setTacgia(TacGia tacgia) {
 		this.tacgia = tacgia;
 	}
+
 	public String getTomtat() {
 		return tomtat;
 	}
 	public void setTomtat(String tomtat) {
 		this.tomtat = tomtat;
 	}
-	public int getTheloai() {
+	
+	public TheLoai getTheloai() {
 		return theloai;
 	}
-	public void setTheloai(int theloai) {
+
+	public void setTheloai(TheLoai theloai) {
 		this.theloai = theloai;
 	}
+
 	public int getKiemduyet() {
 		return kiemduyet;
 	}
