@@ -5,7 +5,8 @@
  <struts>
 	 <constant name="struts.devMode" value="true" />
 	 <package name="basicstruts2" extends="struts-default" strict-method-invocation="false">
-	 
+	 	
+	 	 	
 	 	<action name="">
 	 		<result>/WEB-INF/login.jsp</result>	 		
 	 	</action>
@@ -19,6 +20,11 @@
 		 <action name="*SachAction" class="Action.SachAction" method="{1}">		 
 			<result name="success">/WEB-INF/admin/sach/{1}.jsp</result>
 			<result name="list" type="redirect">listSachAction</result>
+		</action>
+		
+		<action name="*ChuongAction" class="Action.ChuongAction" method="{1}">		 
+			<result name="success">/WEB-INF/admin/chuong/{1}.jsp</result>	 
+			<result name="list">/WEB-INF/admin/chuong/list.jsp</result>
 		</action>
 		
 	 </package>
