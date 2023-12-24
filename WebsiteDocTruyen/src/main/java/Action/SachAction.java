@@ -12,12 +12,11 @@ import com.opensymphony.xwork2.ActionSupport;
 import Model.Sach;
 import Model.TacGia;
 import Model.TheLoai;
-import DAO.ChuongDAO;
 import DAO.SachDAO;
 import DAO.TacGiaDAO;
 import DAO.TheLoaiDAO;
 
-public class SachAction {
+public class SachAction extends ActionSupport{
 	
 	List<Sach> lstSach;
 	List<TacGia> lstTacGia;

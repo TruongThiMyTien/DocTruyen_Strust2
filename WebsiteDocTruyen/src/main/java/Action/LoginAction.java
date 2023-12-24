@@ -35,6 +35,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		// TODO Auto-generated method stub
 		this.session = session;
 	}
+	
 
 	public String login() {
 		NguoiDung nd = new NguoiDungDAO().login(tendangnhap, matkhau);
