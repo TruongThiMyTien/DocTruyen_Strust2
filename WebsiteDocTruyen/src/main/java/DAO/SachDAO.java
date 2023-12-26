@@ -191,5 +191,62 @@ public class SachDAO {
 			 return lstSach;	
 	
 	}
+	
+	public static void tangluotxem(int masach) {
+		DBService db = new DBService();
+		PreparedStatement statement;
+		try {
+			statement = db.getConn().prepareStatement("update sach set luotxem = luotxem + 1 where masach=?");
+			statement.setInt(1, masach);
+			db.executeUpdate(statement);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static List<Sach>  getListSachNoiBat() {
+		List<Sach> lstSach = new ArrayList<Sach>();
+		DBService db = new DBService();
+		PreparedStatement statement;
+		try
+		{
+			statement = db.getConn().prepareStatement("select * from sach ORDER by luotxem desc limit 0, 20");
+			ResultSet rs = db.executeQuery(statement);
+			if(rs != null)
+			{
+				while(rs.next())
+				{
+					lstSach.add(new Sach(rs.getInt("masach"), rs.getString("tensach"), rs.getString("anhdaidien"), rs.getInt("tinhtrang_full"), rs.getInt("tacgia"), rs.getString("tomtat"), rs.getInt("theloai"), rs.getInt("kiemduyet"), rs.getInt("luotxem")));
+				}
+			}
+		}catch (SQLException e) {
+			 // TODO Auto-generated catch block
+			 e.printStackTrace();
+			 }
+			 return lstSach;	
+	}
+	
+	public static List<Sach>  getListSachFull() {
+		List<Sach> lstSach = new ArrayList<Sach>();
+		DBService db = new DBService();
+		PreparedStatement statement;
+		try
+		{
+			statement = db.getConn().prepareStatement("select * from sach where tinhtrang_full = 1");
+			ResultSet rs = db.executeQuery(statement);
+			if(rs != null)
+			{
+				while(rs.next())
+				{
+					lstSach.add(new Sach(rs.getInt("masach"), rs.getString("tensach"), rs.getString("anhdaidien"), rs.getInt("tinhtrang_full"), rs.getInt("tacgia"), rs.getString("tomtat"), rs.getInt("theloai"), rs.getInt("kiemduyet"), rs.getInt("luotxem")));
+				}
+			}
+		}catch (SQLException e) {
+			 // TODO Auto-generated catch block
+			 e.printStackTrace();
+			 }
+			 return lstSach;	
+	}
 
 }

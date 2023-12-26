@@ -133,4 +133,56 @@ public class ChuongDAO {
 		}
 	}
 	
+	public static Chuong getChuongByIdSachandChuongSo(int id, int id2)
+	{
+		Chuong chuong = null;
+		DBService db = new DBService();
+		PreparedStatement statement;
+		try {
+			statement = db.getConn().prepareStatement("SELECT * FROM chuong WHERE sach = ? AND chuongso = ?");
+			statement.setInt(1, id);
+			statement.setInt(2, id2);
+			ResultSet rs = db.executeQuery(statement);
+			if (rs != null) {
+				while (rs.next()) {
+					chuong = new Chuong(rs.getInt("machuong"), rs.getInt("sach"), rs.getInt("chuongso"), rs.getString("tenchuong"), rs.getString("noidung"));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return chuong;
+	
+	}
+	
+	
+	public static int ChuongSoMin(int masach)
+	{
+		List<Chuong> lstChuong = new ArrayList<Chuong>();
+		int min = 0;
+		DBService db = new DBService();
+		PreparedStatement statement;
+		try
+		{
+			statement = db.getConn().prepareStatement("select chuongso from chuong where sach = ?");
+			statement.setInt(1, masach);
+			ResultSet rs = db.executeQuery(statement);
+			if(rs != null)
+			{				
+				while(rs.next())
+				{
+					if(rs.getInt("chuongso") < min)
+					{
+						min = rs.getInt("chuongso");
+					}					
+				}
+			}
+		}catch (SQLException e) {
+			 // TODO Auto-generated catch block
+			 e.printStackTrace();
+			 }
+			 return min;	
+	}
+	
 }

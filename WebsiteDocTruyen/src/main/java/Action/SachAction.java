@@ -302,7 +302,7 @@ public class SachAction {
 		lstSach = SachDAO.getList();
 		return "success";
 	}
-	public String filterauthor()
+	public String filterbyauthor()
 	{
 		lstTheLoai = TheLoaiDAO.getList();
 		lstTacGia = TacGiaDAO.getList();
@@ -333,6 +333,22 @@ public class SachAction {
 		lstTheLoai = TheLoaiDAO.getList();
 		lstSach = SachDAO.searchByName(searchkey); 	
 		return "home";
+	}
+	
+	public String hot()
+	{
+		lstTacGia = TacGiaDAO.getList();
+		lstTheLoai = TheLoaiDAO.getList();
+		lstSach = SachDAO.getListSachNoiBat();
+		return "success";
+	}
+	
+	public String full()
+	{
+		lstTacGia = TacGiaDAO.getList();
+		lstTheLoai = TheLoaiDAO.getList();
+		lstSach = SachDAO.getListSachFull();
+		return "success";
 	}
 	
 	

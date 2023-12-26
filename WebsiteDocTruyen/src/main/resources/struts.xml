@@ -7,8 +7,8 @@
 	 <package name="basicstruts2" extends="struts-default" strict-method-invocation="false">
 	 	
 	 	 	
-	 	<action name="" class="Action.SachAction" method="home">
-	 		<result>/WEB-INF/khach/index.jsp</result>	 		
+	 	<action name="homeAction" class="Action.SachAction" method="home">
+	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
 	 	</action>
 	 	
 	 	<action name="login">
@@ -37,6 +37,18 @@
 		</action>
 		
 		<action name="filterbycategory" class="Action.SachAction" method="filterbycategory">
+	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
+	 	</action>
+	 	
+	 	<action name="filterbyauthorAction" class="Action.SachAction" method="filterbyauthor">
+	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
+	 	</action>
+	 	
+	 	<action name="*chapterAction" class="Action.ChuongAction" method="{1}">
+	 		<result name="success">/WEB-INF/khach/chapter.jsp</result>
+	 	</action>
+	 	
+	 	<action name="book*Action" class="Action.SachAction" method="{1}">
 	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
 	 	</action>
 	 	
