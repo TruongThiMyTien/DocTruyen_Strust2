@@ -8,7 +8,8 @@ import java.util.List;
 
 import Model.Sach;
 
-public class SachDAO  {
+public class SachDAO {
+	
 	
 	public static List<Sach> getList()
 	{
@@ -18,6 +19,54 @@ public class SachDAO  {
 		try
 		{
 			statement = db.getConn().prepareStatement("select * from sach");
+			ResultSet rs = db.executeQuery(statement);
+			if(rs != null)
+			{
+				while(rs.next())
+				{
+					lstSach.add(new Sach(rs.getInt("masach"), rs.getString("tensach"), rs.getString("anhdaidien"), rs.getInt("tinhtrang_full"), rs.getInt("tacgia"), rs.getString("tomtat"), rs.getInt("theloai"), rs.getInt("kiemduyet"), rs.getInt("luotxem")));
+				}
+			}
+		}catch (SQLException e) {
+			 // TODO Auto-generated catch block
+			 e.printStackTrace();
+			 }
+			 return lstSach;	
+	
+	}
+	public static List<Sach> getListByTacGia(int id)
+	{
+		List<Sach> lstSach = new ArrayList<Sach>();
+		DBService db = new DBService();
+		PreparedStatement statement;
+		try
+		{
+			statement = db.getConn().prepareStatement("SELECT * FROM sach INNER JOIN tacgia ON sach.tacgia = tacgia.matacgia WHERE sach.tacgia = ?");
+			statement.setInt(1, id);
+			ResultSet rs = db.executeQuery(statement);
+			if(rs != null)
+			{
+				while(rs.next())
+				{
+					lstSach.add(new Sach(rs.getInt("masach"), rs.getString("tensach"), rs.getString("anhdaidien"), rs.getInt("tinhtrang_full"), rs.getInt("tacgia"), rs.getString("tomtat"), rs.getInt("theloai"), rs.getInt("kiemduyet"), rs.getInt("luotxem")));
+				}
+			}
+		}catch (SQLException e) {
+			 // TODO Auto-generated catch block
+			 e.printStackTrace();
+			 }
+			 return lstSach;	
+	
+	}
+	public static List<Sach> getListByTheLoai(int id)
+	{
+		List<Sach> lstSach = new ArrayList<Sach>();
+		DBService db = new DBService();
+		PreparedStatement statement;
+		try
+		{
+			statement = db.getConn().prepareStatement("SELECT * FROM sach INNER JOIN theloai ON sach.theloai = theloai.matheloai WHERE sach.theloai = ?");
+			statement.setInt(1, id);
 			ResultSet rs = db.executeQuery(statement);
 			if(rs != null)
 			{
@@ -115,5 +164,32 @@ public class SachDAO  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
+	
+	public static List<Sach> searchByName(String tensach)
+	{
+		List<Sach> lstSach = new ArrayList<Sach>();
+		DBService db = new DBService();
+		PreparedStatement statement;
+		try
+		{
+			statement = db.getConn().prepareStatement("SELECT * FROM sach where tensach like ?");
+			statement.setString(1,"%" + tensach + "%");
+			ResultSet rs = db.executeQuery(statement);
+			if(rs != null)
+			{
+				while(rs.next())
+				{
+					lstSach.add(new Sach(rs.getInt("masach"), rs.getString("tensach"), rs.getString("anhdaidien"), rs.getInt("tinhtrang_full"), rs.getInt("tacgia"), rs.getString("tomtat"), rs.getInt("theloai"), rs.getInt("kiemduyet"), rs.getInt("luotxem")));
+				}
+			}
+		}catch (SQLException e) {
+			 // TODO Auto-generated catch block
+			 e.printStackTrace();
+			 }
+			 return lstSach;	
+	
+	}
+
 }

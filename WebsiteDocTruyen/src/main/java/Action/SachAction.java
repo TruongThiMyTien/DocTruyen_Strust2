@@ -9,14 +9,16 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import Model.Chuong;
 import Model.Sach;
 import Model.TacGia;
 import Model.TheLoai;
+import DAO.ChuongDAO;
 import DAO.SachDAO;
 import DAO.TacGiaDAO;
 import DAO.TheLoaiDAO;
 
-public class SachAction extends ActionSupport{
+public class SachAction {
 	
 	List<Sach> lstSach;
 	List<TacGia> lstTacGia;
@@ -32,6 +34,79 @@ public class SachAction extends ActionSupport{
 	String tomtat;
 	int theloai;
 	int kiemduyet;
+	TacGia tacgia1;
+	List<Chuong> lstChuong;
+	int sochuong;
+	Chuong chuong;	
+	String searchkey;
+	public String getSearchkey() {
+		return searchkey;
+	}
+
+	public void setSearchkey(String searchkey) {
+		this.searchkey = searchkey;
+	}
+
+	public Chuong getChuong() {
+		return chuong;
+	}
+
+	public void setChuong(Chuong chuong) {
+		this.chuong = chuong;
+	}
+
+	public int getSochuong() {
+		return sochuong;
+	}
+
+	public void setSochuong(int sochuong) {
+		this.sochuong = sochuong;
+	}
+
+	public List<Chuong> getLstChuong() {
+		return lstChuong;
+	}
+
+	public void setLstChuong(List<Chuong> lstChuong) {
+		this.lstChuong = lstChuong;
+	}
+
+	public TacGia getTacgia1() {
+		return tacgia1;
+	}
+
+	public void setTacgia1(TacGia tacgia1) {
+		this.tacgia1 = tacgia1;
+	}
+
+	public TheLoai getTheloai1() {
+		return theloai1;
+	}
+
+	public void setTheloai1(TheLoai theloai1) {
+		this.theloai1 = theloai1;
+	}
+
+	public String getTentacgia() {
+		return tentacgia;
+	}
+
+	public void setTentacgia(String tentacgia) {
+		this.tentacgia = tentacgia;
+	}
+
+	public String getTentheloai() {
+		return tentheloai;
+	}
+
+	public void setTentheloai(String tentheloai) {
+		this.tentheloai = tentheloai;
+	}
+
+
+	TheLoai theloai1;
+	String tentacgia;
+	String tentheloai;
 		
 	public Sach getSach() {
 		return sach;
@@ -200,9 +275,7 @@ public class SachAction extends ActionSupport{
 	public String update()
 	{
 		String path = ServletActionContext.getServletContext().getRealPath("./images");
-		//Vị trí lưu ảnh: C:\Users\t0195\Desktop\Java  Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\foody\img
-//		System.out.println("image location: " + path);
-//		System.out.println("file name: " + hinhFileName);
+		
 		if(hinhFileName != null)
 		{
 			
@@ -222,4 +295,45 @@ public class SachAction extends ActionSupport{
 		SachDAO.update(masach, tensach, hinhFileName, full, tacgia, tomtat, theloai, kiemduyet);
 		return "list";
 	}
+	public String home()
+	{
+		lstTacGia = TacGiaDAO.getList();
+		lstTheLoai = TheLoaiDAO.getList();
+		lstSach = SachDAO.getList();
+		return "success";
+	}
+	public String filterauthor()
+	{
+		lstTheLoai = TheLoaiDAO.getList();
+		lstTacGia = TacGiaDAO.getList();
+		lstSach =  SachDAO.getListByTacGia(tacgia);
+		return "success";
+	}
+	public String filterbycategory()
+	{
+		lstTheLoai = TheLoaiDAO.getList();
+		lstTacGia = TacGiaDAO.getList();
+		lstSach =  SachDAO.getListByTheLoai(theloai);
+		return "success";
+	}
+	
+	public String bookdetail()
+	{
+		lstChuong = ChuongDAO.getListChuongByIdSach(masach);
+		lstTacGia = TacGiaDAO.getList();
+		lstTheLoai = TheLoaiDAO.getList();
+		sach = SachDAO.getSachById(masach);
+		sochuong = lstChuong.size();
+		return "success";
+	}
+	
+	public String search()
+	{
+		lstTacGia = TacGiaDAO.getList();
+		lstTheLoai = TheLoaiDAO.getList();
+		lstSach = SachDAO.searchByName(searchkey); 	
+		return "home";
+	}
+	
+	
 }
