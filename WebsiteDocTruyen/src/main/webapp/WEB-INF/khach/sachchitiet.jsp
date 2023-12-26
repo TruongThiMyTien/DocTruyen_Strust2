@@ -16,6 +16,12 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
+	<style>
+        .vertical-divider {
+          margin-top: 1%;
+		  margin-bottom: 1%;
+        }
+    </style>
 </head>
 <body>
 <s:if test="hasActionMessage()">
@@ -33,22 +39,22 @@
 	<!--Navbar-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
-		  <a class="navbar-brand" href="#"><img src="./images/logo.png" alt="logo" width="75"></a>
+		  <a class="navbar-brand" href="homeAction"><img src="./images/logo.png" alt="logo" width="75"></a>
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		  </button>
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			  <li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
+				<a class="nav-link active" aria-current="page" href="homeAction">Trang chủ</a>
 			  </li>
 			  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 				  Danh muc
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-				  <li><a class="dropdown-item" href="#">Sách hot</a></li>
-				  <li><a class="dropdown-item" href="#">Sách full</a></li>
+				  <li><a class="dropdown-item" href="bookhotAction">Sách hot</a></li>
+				  <li><a class="dropdown-item" href="bookfullAction">Sách full</a></li>
 				</ul>
 			  </li>
 			  <li class="nav-item dropdown">
@@ -115,12 +121,12 @@
 							<div class="card-text">
 								${sach.tomtat}
 							</div>
-							<a class="card-text btn btn-warning" href="#">Bắt đầu đọc</a>
+							<a class="card-text btn btn-warning text-light" href="nextchapterAction?masach=${sach.masach}&chuongso=0">Bắt đầu đọc</a>
 							<hr>
 							<div>
 								<h3 class="card-title">Danh sách chương</h3>
 								<c:forEach items="${lstChuong}" var="chuong">
-									<a href="#" class="list-group-item">Chương ${chuong.chuongso}: ${chuong.tenchuong}</a>
+									<a href="nextchapterAction?masach=${sach.masach}&chuongso=${chuong.chuongso}" class="list-group-item">Chương ${chuong.chuongso}: ${chuong.tenchuong}</a>
 									<hr class="vertical-divider">
 								</c:forEach>
 							</div>
