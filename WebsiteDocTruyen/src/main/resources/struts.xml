@@ -4,93 +4,174 @@
  
  <struts>
 	 <constant name="struts.devMode" value="true" />
-	 <package name="basicstruts2" extends="struts-default" strict-method-invocation="false">	 	
+	 <package name="basicstruts2" extends="struts-default" strict-method-invocation="false">	
+	 
+	 	<interceptors>
+	 		<interceptor class="Interceptor.LoginInterceptor"
+				name="loginInterceptor">
+				</interceptor>
+				<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+	 		
+	 		<interceptor class="Interceptor.AuthenticatedInterceptor"
+				name="authenticatedInterceptor">
+			</interceptor>
+			
+			<interceptor class="Interceptor.RoleInterceptor"
+				name="roleBasedIntercetor" />
+				<interceptor-stack name="roleBasedDefaultInterceptor">
+				<interceptor-ref name="params" />
+				<interceptor-ref name="roleBasedIntercetor" />
+			</interceptor-stack>
+	 	</interceptors> 	
 	 	 	
+	 	<!-- bỏ qua -->
 	 	<action name="" class="Action.SachAction" method="home">
 	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
 	 	</action>
 	 	
-	 	<action name="homeAction" class="Action.SachAction" method="home">
+	 	<!-- bỏ qua -->
+	 	<action name="home" class="Action.SachAction" method="home">
+	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
+	 	</action>	 	
+		
+		<!-- bỏ qua -->
+		<action name="filterbycategory" class="Action.SachAction" method="filterbycategory">
 	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
 	 	</action>
 	 	
-	 	<action name="login">
-	 		<result>/WEB-INF/login.jsp</result>	 		
+	 	<!-- bỏ qua -->
+	 	<action name="filterbyauthorAction" class="Action.SachAction" method="filterbyauthor">
+	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
 	 	</action>
 	 	
+	 	<action name="searchSachAction" class="Action.SachAction" method="search">		
+			<result name="home">/WEB-INF/khach/index.jsp</result>
+		</action>
+	 	
+	 	<!-- bỏ qua -->
 	 	<action name="bookdetailAction" class="Action.SachAction" method="bookdetail">
 	 		<result name="success">/WEB-INF/khach/sachchitiet.jsp</result>	 		
 	 	</action>
 	 	
+	 	<!-- bỏ qua -->
+	 	<action name="*chapterAction" class="Action.ChuongAction" method="{1}">
+	 		<result name="success">/WEB-INF/khach/chapter.jsp</result>
+	 	</action>	 	
+	 	
+	 	<!-- bỏ qua -->
+	 	<!-- full, hot -->
+	 	<action name="book*Action" class="Action.SachAction" method="{1}">
+	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
+	 	</action>	 	 	
+	 	
+	 	
+	 	<!-- xong -->
+	 	<action name="login">	 		
+			<interceptor-ref name="authenticatedInterceptor" />
+			<result name="login">/WEB-INF/login.jsp</result>
+			<result name="admin" >/WEB-INF/admin/index.jsp</result>
+			<result name="nhanvien" >/WEB-INF/nhanvien/index.jsp</result>
+	 	</action>
+	 	
+	 	
+	 	<!-- bỏ qua -->
 	 	<action name="LoginUser" class="Action.LoginAction" method="login">
 			<result name="loginFail">/WEB-INF/login.jsp</result>
 			<result name="admin" >/WEB-INF/admin/index.jsp</result>
 			<result name="nhanvien" >/WEB-INF/nhanvien/index.jsp</result>
-		 </action>
+		 </action>		 
 		 
-		 <action name="*ADLoginAction" class="Action.LoginAction" method="{1}">		 		 
-			<result name="success">/WEB-INF/admin/{1}.jsp</result>
-			<result name="profile" type="redirect">profileADLoginAction</result> 		 
+		 <action name="*NVLoginAction" class="Action.LoginAction" method="{1}">			 
 			<result name="login">/WEB-INF/login.jsp</result>
-		 </action>
-		 
-		 <action name="*NVLoginAction" class="Action.LoginAction" method="{1}">		 		 
 			<result name="success">/WEB-INF/nhanvien/{1}.jsp</result>
-			<result name="profile" type="redirect">profileNVLoginAction</result> 		 
-			<result name="login">/WEB-INF/login.jsp</result>
+			<result name="profile" type="redirect">profileNVLoginAction</result> 
 		 </action>
 		 
 		 <action name="*NVSachAction" class="Action.SachAction" method="{1}">		 
+			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="roleBasedIntercetor">
+				<param name="allowedRoles">nhanvien</param>
+			</interceptor-ref>
+			<result name="error">/WEB-INF/error.jsp</result>
+			<result name="login">/WEB-INF/login.jsp</result>			
 			<result name="success">/WEB-INF/nhanvien/sach/{1}.jsp</result>				 
 			<result name="list" type="redirect">listNVSachAction</result>
 		</action>
 		
 		<action name="*NVChuongAction" class="Action.ChuongAction" method="{1}">		 
+			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="roleBasedIntercetor">
+				<param name="allowedRoles">nhanvien</param>
+			</interceptor-ref>
+			<result name="error">/WEB-INF/error.jsp</result>
+			<result name="login">/WEB-INF/login.jsp</result>
 			<result name="success">/WEB-INF/nhanvien/chuong/{1}.jsp</result>				 
 			<result name="list">/WEB-INF/nhanvien/chuong/list.jsp</result>
 		</action>
 		 
-		 <action name="*SachAction" class="Action.SachAction" method="{1}">		 
+		 <action name="*ADLoginAction" class="Action.LoginAction" method="{1}">	
+			<result name="login">/WEB-INF/login.jsp</result>
+			<result name="success">/WEB-INF/admin/{1}.jsp</result>
+			<result name="profile" type="redirect">profileADLoginAction</result> 	
+		 </action>
+		 
+		 <action name="*SachAction" class="Action.SachAction" method="{1}">	
+			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="roleBasedIntercetor">
+				<param name="allowedRoles">admin</param>
+			</interceptor-ref>
+			<result name="error">/WEB-INF/error.jsp</result>
+			<result name="login">/WEB-INF/login.jsp</result>			
 			<result name="success">/WEB-INF/admin/sach/{1}.jsp</result>
 			<result name="list" type="redirect">listSachAction</result>
-			<result name="home">/WEB-INF/khach/index.jsp</result>
 		</action>
 		
-		<action name="*ChuongAction" class="Action.ChuongAction" method="{1}">		 
+		<action name="*ChuongAction" class="Action.ChuongAction" method="{1}">		
+			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="roleBasedIntercetor">
+				<param name="allowedRoles">admin</param>
+			</interceptor-ref>
+			<result name="error">/WEB-INF/error.jsp</result>
+			<result name="login">/WEB-INF/login.jsp</result> 			
 			<result name="success">/WEB-INF/admin/chuong/{1}.jsp</result>	 
 			<result name="list">/WEB-INF/admin/chuong/list.jsp</result>
 		</action>
 		
-		<action name="*TacGiaAction" class="Action.TacGiaAction" method="{1}">		 
+		<action name="*TacGiaAction" class="Action.TacGiaAction" method="{1}">	
+			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="roleBasedIntercetor">
+				<param name="allowedRoles">admin</param>
+			</interceptor-ref>
+			<result name="error">/WEB-INF/error.jsp</result>
+			<result name="login">/WEB-INF/login.jsp</result>				 
 			<result name="success">/WEB-INF/admin/tacgia/{1}.jsp</result>	 
 			<result name="list">/WEB-INF/admin/tacgia/list.jsp</result>
 		</action>
 		
-		<action name="*TheLoaiAction" class="Action.TheLoaiAction" method="{1}">		 
+		<action name="*TheLoaiAction" class="Action.TheLoaiAction" method="{1}">	
+			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="roleBasedIntercetor">
+				<param name="allowedRoles">admin</param>
+			</interceptor-ref>
+			<result name="error">/WEB-INF/error.jsp</result>
+			<result name="login">/WEB-INF/login.jsp</result>				 
 			<result name="success">/WEB-INF/admin/theloai/{1}.jsp</result>	 
 			<result name="list">/WEB-INF/admin/theloai/list.jsp</result>
 		</action>
 		
-		<action name="*NguoiDungAction" class="Action.NguoiDungAction" method="{1}">		 
+		<action name="*NguoiDungAction" class="Action.NguoiDungAction" method="{1}">	
+			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="roleBasedIntercetor">
+				<param name="allowedRoles">admin</param>
+			</interceptor-ref>
+			<result name="error">/WEB-INF/error.jsp</result>
+			<result name="login">/WEB-INF/login.jsp</result>				 
 			<result name="success">/WEB-INF/admin/nguoidung/{1}.jsp</result>	 
 			<result name="list">/WEB-INF/admin/nguoidung/list.jsp</result>
 		</action>
-		
-		<action name="filterbycategory" class="Action.SachAction" method="filterbycategory">
-	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
-	 	</action>
-	 	
-	 	<action name="filterbyauthorAction" class="Action.SachAction" method="filterbyauthor">
-	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
-	 	</action>
-	 	
-	 	<action name="*chapterAction" class="Action.ChuongAction" method="{1}">
-	 		<result name="success">/WEB-INF/khach/chapter.jsp</result>
-	 	</action>
-	 	
-	 	<action name="book*Action" class="Action.SachAction" method="{1}">
-	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
-	 	</action>
 	 	
 		
 	 </package>

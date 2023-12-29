@@ -18,8 +18,6 @@
 	<div class="container">
 	
 		<div id="phandau">
-			<br><br><br><br>
-			<a href="btn btn-outline-danger">Đăng xuất</a>
         </div>
         
         <!-- Phần giữa -->
