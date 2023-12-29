@@ -45,27 +45,14 @@
 		  </button>
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-			  <li class="nav-item">
+			 <li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="homeAction">Trang chủ</a>
 			  </li>
-			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				  Danh muc
-				</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-				  <li><a class="dropdown-item" href="bookhotAction">Sách hot</a></li>
-				  <li><a class="dropdown-item" href="bookfullAction">Sách full</a></li>
-				</ul>
+			   <li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="bookhotAction">Sách hot</a>
 			  </li>
-			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				  Tác giả
-				</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-				  <c:forEach items="${lstTacGia}" var="tacgia1">
-				  	<li><a class="dropdown-item" href="filterauthorAction?tacgia=${tacgia1.matacgia}">${tacgia1.tentacgia}</a></li>
-				  </c:forEach>
-				</ul>
+			   <li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="bookfullAction">Sách full</a>
 			  </li>
 			  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -97,7 +84,7 @@
 		<div class="row my-4 d-flex justify-content-center align-items-center">
             <div class="card w-50">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3 py-3">
 						<img src="./images/${sach.anhdaidien}" alt="" width="200">
                         <hr class="vertical-divider">
 					</div>

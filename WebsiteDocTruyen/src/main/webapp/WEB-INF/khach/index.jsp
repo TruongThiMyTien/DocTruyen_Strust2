@@ -43,25 +43,13 @@
 			  <li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="homeAction">Trang chủ</a>
 			  </li>
-			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				  Danh mục
-				</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-				  <li><a class="dropdown-item" href="bookhotAction">Sách hot</a></li>
-				  <li><a class="dropdown-item" href="bookfullAction">Sách full</a></li>
-				</ul>
+			   <li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="bookhotAction">Sách hot</a>
 			  </li>
-			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				  Tác giả
-				</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-				  <c:forEach items="${lstTacGia}" var="tacgia1">
-				  	<li><a class="dropdown-item" href="filterbyauthorAction?tacgia=${tacgia1.matacgia}">${tacgia1.tentacgia}</a></li>
-				  </c:forEach>
-				</ul>
+			   <li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="bookfullAction">Sách full</a>
 			  </li>
+			  
 			  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 				  Thể loại
@@ -89,8 +77,11 @@
 				<c:when test="${sach.kiemduyet == 1}">
 					<div class="card w-50">
 				<div class="row">
-					<div class="col-md-2">
-						<img src="./images/${sach.anhdaidien}" alt="" width="100">
+					<div class="col-md-2 py-2">
+						
+						<a style="text-decoration: none;" class="text-dark" href="bookdetailAction?masach=${sach.masach}">
+							<img src="./images/${sach.anhdaidien}" alt="" width="100">
+						</a>
 					</div>
 					<div class="col-md-8">
 						<div class="card-body">

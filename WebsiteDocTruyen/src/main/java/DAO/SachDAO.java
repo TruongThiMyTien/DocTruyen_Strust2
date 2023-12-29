@@ -167,15 +167,16 @@ public class SachDAO {
 		
 	}
 	
-	public static List<Sach> searchByName(String tensach)
+	public static List<Sach> searchByName(String key)
 	{
 		List<Sach> lstSach = new ArrayList<Sach>();
 		DBService db = new DBService();
 		PreparedStatement statement;
 		try
 		{
-			statement = db.getConn().prepareStatement("SELECT * FROM sach where tensach like ?");
-			statement.setString(1,"%" + tensach + "%");
+			statement = db.getConn().prepareStatement("SELECT * FROM sach, tacgia where sach.tacgia = tacgia.matacgia and(tensach like ? or tentacgia like ?)");
+			statement.setString(1,"%" + key + "%");
+			statement.setString(2,"%" + key + "%");
 			ResultSet rs = db.executeQuery(statement);
 			if(rs != null)
 			{

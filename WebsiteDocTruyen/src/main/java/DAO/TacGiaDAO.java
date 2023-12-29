@@ -53,5 +53,32 @@ public class TacGiaDAO {
 			 return lstTacGia;	
 	
 	}
+	
+	public static void store(String tentacgia) {
+		DBService db = new DBService();
+		PreparedStatement statement;
+		try {
+			statement = db.getConn().prepareStatement("INSERT INTO tacgia(tentacgia) values(?)");
+			statement.setString(1, tentacgia);
+			db.executeUpdate(statement);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void update(int matacgia, String tentacgia) {
+		DBService db = new DBService();
+		PreparedStatement statement;
+		try {
+			statement = db.getConn().prepareStatement("update tacgia set tentacgia=? where matacgia=?");			
+			statement.setString(1, tentacgia);
+			statement.setInt(2, matacgia);
+			db.executeUpdate(statement);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

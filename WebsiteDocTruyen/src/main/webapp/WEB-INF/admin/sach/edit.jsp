@@ -26,9 +26,14 @@
         		<h3>Quản lý</h3>
         		<ul>
         			<li><a href="listSachAction" >Danh sách sách</a><br/></li>
-        			<li><a href="" >Danh sách tác giả</a><br/></li>
-        			<li><a href="" >Danh sách thể loại</a><br/></li>
-        			<li><a href="" >Danh sách người dùng</a></li>
+        			<li><a href="listTacGiaAction" >Danh sách tác giả</a><br/></li>
+        			<li><a href="listTheLoaiAction" >Danh sách thể loại</a><br/></li>
+        			<li><a href="listNguoiDungAction" >Danh sách người dùng</a></li>
+        		</ul>
+        		<h3>Tài khoản</h3>
+        		<ul>
+        			<li><a href="profileADLoginAction" >Thông tin tài khoản</a><br/></li>        			
+        			<li><a href="logoutADLoginAction" >Đăng xuất</a><br/></li>
         		</ul>
         	</div>
         	<div class="col-md">

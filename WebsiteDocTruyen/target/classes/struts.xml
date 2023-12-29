@@ -4,9 +4,12 @@
  
  <struts>
 	 <constant name="struts.devMode" value="true" />
-	 <package name="basicstruts2" extends="struts-default" strict-method-invocation="false">
-	 	
+	 <package name="basicstruts2" extends="struts-default" strict-method-invocation="false">	 	
 	 	 	
+	 	<action name="" class="Action.SachAction" method="home">
+	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
+	 	</action>
+	 	
 	 	<action name="homeAction" class="Action.SachAction" method="home">
 	 		<result name="success">/WEB-INF/khach/index.jsp</result>	 		
 	 	</action>
@@ -25,6 +28,28 @@
 			<result name="nhanvien" >/WEB-INF/nhanvien/index.jsp</result>
 		 </action>
 		 
+		 <action name="*ADLoginAction" class="Action.LoginAction" method="{1}">		 		 
+			<result name="success">/WEB-INF/admin/{1}.jsp</result>
+			<result name="profile" type="redirect">profileADLoginAction</result> 		 
+			<result name="login">/WEB-INF/login.jsp</result>
+		 </action>
+		 
+		 <action name="*NVLoginAction" class="Action.LoginAction" method="{1}">		 		 
+			<result name="success">/WEB-INF/nhanvien/{1}.jsp</result>
+			<result name="profile" type="redirect">profileNVLoginAction</result> 		 
+			<result name="login">/WEB-INF/login.jsp</result>
+		 </action>
+		 
+		 <action name="*NVSachAction" class="Action.SachAction" method="{1}">		 
+			<result name="success">/WEB-INF/nhanvien/sach/{1}.jsp</result>				 
+			<result name="list" type="redirect">listNVSachAction</result>
+		</action>
+		
+		<action name="*NVChuongAction" class="Action.ChuongAction" method="{1}">		 
+			<result name="success">/WEB-INF/nhanvien/chuong/{1}.jsp</result>				 
+			<result name="list">/WEB-INF/nhanvien/chuong/list.jsp</result>
+		</action>
+		 
 		 <action name="*SachAction" class="Action.SachAction" method="{1}">		 
 			<result name="success">/WEB-INF/admin/sach/{1}.jsp</result>
 			<result name="list" type="redirect">listSachAction</result>
@@ -34,6 +59,21 @@
 		<action name="*ChuongAction" class="Action.ChuongAction" method="{1}">		 
 			<result name="success">/WEB-INF/admin/chuong/{1}.jsp</result>	 
 			<result name="list">/WEB-INF/admin/chuong/list.jsp</result>
+		</action>
+		
+		<action name="*TacGiaAction" class="Action.TacGiaAction" method="{1}">		 
+			<result name="success">/WEB-INF/admin/tacgia/{1}.jsp</result>	 
+			<result name="list">/WEB-INF/admin/tacgia/list.jsp</result>
+		</action>
+		
+		<action name="*TheLoaiAction" class="Action.TheLoaiAction" method="{1}">		 
+			<result name="success">/WEB-INF/admin/theloai/{1}.jsp</result>	 
+			<result name="list">/WEB-INF/admin/theloai/list.jsp</result>
+		</action>
+		
+		<action name="*NguoiDungAction" class="Action.NguoiDungAction" method="{1}">		 
+			<result name="success">/WEB-INF/admin/nguoidung/{1}.jsp</result>	 
+			<result name="list">/WEB-INF/admin/nguoidung/list.jsp</result>
 		</action>
 		
 		<action name="filterbycategory" class="Action.SachAction" method="filterbycategory">
