@@ -36,7 +36,8 @@
         		<h3 class="text-center">Sửa thông tin tài khoản</h3>
         		<div class="row">
 					<div class="col-md-10 offset-md-1">
-						<form action="updateNVLoginAction" method="post">
+						<form action="updateNVLoginAction" method="post">							
+						 	<input name="manguoidung" type="hidden" value="${nguoidung.manguoidung }" >
 							<div class="form-group">
 						 		<lable  class="control-label">Tên người dùng: </lable>
 						 		<input name="tennguoidung" class="form-control" value="${nguoidung.tennguoidung }" >

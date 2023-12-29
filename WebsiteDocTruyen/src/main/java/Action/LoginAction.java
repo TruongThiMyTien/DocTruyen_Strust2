@@ -12,7 +12,39 @@ import DAO.NguoiDungDAO;
 public class LoginAction extends ActionSupport implements SessionAware {
 
 	String tendangnhap,matkhau;
+	String tennguoidung;
 	Map<String, Object> session;
+	NguoiDung nguoidung;
+	int manguoidung;
+		
+	
+	public int getManguoidung() {
+		return manguoidung;
+	}
+
+	public void setManguoidung(int manguoidung) {
+		this.manguoidung = manguoidung;
+	}
+
+	public String getTennguoidung() {
+		return tennguoidung;
+	}
+
+	public void setTennguoidung(String tennguoidung) {
+		this.tennguoidung = tennguoidung;
+	}
+
+	public NguoiDung getNguoidung() {
+		return nguoidung;
+	}
+
+	public void setNguoidung(NguoiDung nguoidung) {
+		this.nguoidung = nguoidung;
+	}
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
 
 	public String getTendangnhap() {
 		return tendangnhap;
@@ -42,7 +74,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		if(nd != null)
 		{
 			session.put("nguoidung", nd);
-			System.out.println("Login success");
 			if(nd.getQuyen() == 1)
 				return "admin";
 			else
@@ -50,9 +81,34 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		}else
 		{
 			addActionMessage("Bạn nhập sai tên đăng nhập hoặc mật khẩu!");
-			System.out.println("Login fail");
 			return "loginFail";
 		}
 	}	
+	
+	public String profile()
+	{
+		nguoidung = (NguoiDung) session.get("nguoidung");
+		return "success";
+	}
+	
+	public String editprofile()
+	{
+		nguoidung = (NguoiDung)session.get("nguoidung");
+		return "success";
+	}
+	
+	public String update()
+	{
+		NguoiDungDAO.update(manguoidung, tennguoidung, tendangnhap, matkhau);
+		nguoidung = NguoiDungDAO.getNguoiDunghById(manguoidung);
+		session.put("nguoidung", nguoidung);
+		return "profile";
+	}
+	
+	public String logout()
+	{
+		session.put("nguoidung", null);
+		return "login";
+	}
 	
 }

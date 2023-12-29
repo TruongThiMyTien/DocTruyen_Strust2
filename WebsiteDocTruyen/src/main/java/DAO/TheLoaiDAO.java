@@ -54,4 +54,31 @@ public class TheLoaiDAO {
 	
 	}
 	
+	public static void store(String tentheloai) {
+		DBService db = new DBService();
+		PreparedStatement statement;
+		try {
+			statement = db.getConn().prepareStatement("INSERT INTO theloai(tentheloai) values(?)");
+			statement.setString(1, tentheloai);
+			db.executeUpdate(statement);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void update(int matheloai, String tentheloai) {
+		DBService db = new DBService();
+		PreparedStatement statement;
+		try {
+			statement = db.getConn().prepareStatement("update theloai set tentheloai=? where matheloai=?");			
+			statement.setString(1, tentheloai);
+			statement.setInt(2, matheloai);
+			db.executeUpdate(statement);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }
