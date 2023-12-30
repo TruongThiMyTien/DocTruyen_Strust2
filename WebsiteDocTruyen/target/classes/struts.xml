@@ -92,6 +92,7 @@
 		 
 		 <action name="*NVSachAction" class="Action.SachAction" method="{1}">		 
 			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="params" />
 			<interceptor-ref name="roleBasedIntercetor">
 				<param name="allowedRoles">nhanvien</param>
 			</interceptor-ref>
@@ -103,16 +104,17 @@
 		
 		<action name="*NVChuongAction" class="Action.ChuongAction" method="{1}">		 
 			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="params" />
 			<interceptor-ref name="roleBasedIntercetor">
 				<param name="allowedRoles">nhanvien</param>
-			</interceptor-ref>
+			</interceptor-ref>			
 			<result name="error">/WEB-INF/error.jsp</result>
 			<result name="login">/WEB-INF/login.jsp</result>
 			<result name="success">/WEB-INF/nhanvien/chuong/{1}.jsp</result>				 
 			<result name="list">/WEB-INF/nhanvien/chuong/list.jsp</result>
 		</action>
 		 
-		 <action name="*ADLoginAction" class="Action.LoginAction" method="{1}">	
+		 <action name="*ADLoginAction" class="Action.LoginAction" method="{1}">		
 			<result name="login">/WEB-INF/login.jsp</result>
 			<result name="success">/WEB-INF/admin/{1}.jsp</result>
 			<result name="profile" type="redirect">profileADLoginAction</result> 	
@@ -120,20 +122,26 @@
 		 
 		 <action name="*SachAction" class="Action.SachAction" method="{1}">	
 			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="params" />
 			<interceptor-ref name="roleBasedIntercetor">
 				<param name="allowedRoles">admin</param>
 			</interceptor-ref>
+			<interceptor-ref name="validation"/>
 			<result name="error">/WEB-INF/error.jsp</result>
 			<result name="login">/WEB-INF/login.jsp</result>			
 			<result name="success">/WEB-INF/admin/sach/{1}.jsp</result>
 			<result name="list" type="redirect">listSachAction</result>
+			<result name="input">/WEB-INF/admin/sach/{1}.jsp</result>	
+			
 		</action>
 		
 		<action name="*ChuongAction" class="Action.ChuongAction" method="{1}">		
 			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="params" />
 			<interceptor-ref name="roleBasedIntercetor">
 				<param name="allowedRoles">admin</param>
 			</interceptor-ref>
+			<interceptor-ref name="validation"/>
 			<result name="error">/WEB-INF/error.jsp</result>
 			<result name="login">/WEB-INF/login.jsp</result> 			
 			<result name="success">/WEB-INF/admin/chuong/{1}.jsp</result>	 
@@ -142,9 +150,11 @@
 		
 		<action name="*TacGiaAction" class="Action.TacGiaAction" method="{1}">	
 			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="params" />
 			<interceptor-ref name="roleBasedIntercetor">
 				<param name="allowedRoles">admin</param>
 			</interceptor-ref>
+			<interceptor-ref name="validation"/>
 			<result name="error">/WEB-INF/error.jsp</result>
 			<result name="login">/WEB-INF/login.jsp</result>				 
 			<result name="success">/WEB-INF/admin/tacgia/{1}.jsp</result>	 
@@ -153,9 +163,11 @@
 		
 		<action name="*TheLoaiAction" class="Action.TheLoaiAction" method="{1}">	
 			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="params" />
 			<interceptor-ref name="roleBasedIntercetor">
 				<param name="allowedRoles">admin</param>
 			</interceptor-ref>
+			<interceptor-ref name="validation"/>
 			<result name="error">/WEB-INF/error.jsp</result>
 			<result name="login">/WEB-INF/login.jsp</result>				 
 			<result name="success">/WEB-INF/admin/theloai/{1}.jsp</result>	 
@@ -163,10 +175,12 @@
 		</action>
 		
 		<action name="*NguoiDungAction" class="Action.NguoiDungAction" method="{1}">	
-			<interceptor-ref name="loginInterceptor" /> 
+			<interceptor-ref name="loginInterceptor" />
+			<interceptor-ref name="params" /> 
 			<interceptor-ref name="roleBasedIntercetor">
 				<param name="allowedRoles">admin</param>
 			</interceptor-ref>
+			<interceptor-ref name="validation"/>
 			<result name="error">/WEB-INF/error.jsp</result>
 			<result name="login">/WEB-INF/login.jsp</result>				 
 			<result name="success">/WEB-INF/admin/nguoidung/{1}.jsp</result>	 
