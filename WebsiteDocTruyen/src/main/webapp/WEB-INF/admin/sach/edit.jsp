@@ -51,20 +51,9 @@
 						    </div>		
 						    <div class="form-group">
 						        <div>
-						        <label class="control-label">Tình trạng</label>
-						            <c:choose>
-						                <c:when test="${sach.tinhtrang_full == 1}">
-						                    <input type="radio" id="0" name="full" value="0"> <label for="0">Đang cập nhật</label>
-						                    <input type="radio" id="1" name="full" value="1" checked="true"> <label for="1">Full</label>
-						                </c:when>
-						                <c:otherwise>
-						                    <input type="radio" id="0" name="full" value="0" checked="true"> <label for="0">Đang cập nhật</label>
-						                    <input type="radio" id="1" name="full" value="1"> <label for="1">Full</label>
-						                </c:otherwise>
-						            </c:choose>
+						            <s:radio label="Tình trạng" name="full" list="#{'0':'Đang cập nhật', '1':'Full'}" value="%{sach.tinhtrang_full}" />
 						        </div>
-						    </div>						  
-						    </div>			 
+						    </div>		 
     						<div class="form-group">
     						 		
 						   			<s:textarea label="Tóm tắt" name="tomtat" cssClass="form-control" rows="5" cols="100" value="%{sach.tomtat}"></s:textarea>				
@@ -74,17 +63,7 @@
 						    </div>
 						    <div class="form-group">						       
 						        <div>
-								<label class="control-label">Kiểm duyệt:</label>
-						            <c:choose>
-						                <c:when test="${sach.kiemduyet == 1}">
-						                    <input type="radio" id="0" name="kiemduyet" value="0"> <label for="0">Không duyệt</label>
-						                    <input type="radio" id="1" name="kiemduyet" value="1" checked="true"> <label for="1">Duyệt</label>
-						                </c:when>
-						                <c:otherwise>
-						                    <input type="radio" id="0" name="kiemduyet" value="0" checked="true"> <label for="0">Không duyệt</label>
-						                    <input type="radio" id="1" name="kiemduyet" value="1"> <label for="1">Duyệt</label>
-						                </c:otherwise>
-						            </c:choose>
+						            <s:radio label="Kiểm duyệt" name="kiemduyet" list="#{'0':'Không duyệt', '1':'Duyệt'}" value="%{sach.kiemduyet}" />
 						        </div>
 						    </div>
 						   
