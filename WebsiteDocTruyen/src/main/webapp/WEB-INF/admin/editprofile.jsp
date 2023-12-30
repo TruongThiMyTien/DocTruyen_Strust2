@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,24 +40,20 @@
         		<h3 class="text-center">Sửa thông tin tài khoản</h3>
         		<div class="row">
 					<div class="col-md-10 offset-md-1">
-						<s:form action="updateADLoginAction" method="post" validate="true">
-						 	<s:hidden name="manguoidung" value="%{nguoidung.manguoidung}" />
-
-							    <div class="form-group">
-                            <s:textfield label="Tên người dùng" name="tennguoidung" cols="50" required="required" cssClass="form-control" value="%{nguoidung.tennguoidung}"/>                            
-							    </div>
-							
-							    <div class="form-group">
-                            <s:textfield label="Tên đăng nhập" name="tendangnhap" cols="50" required="required" cssClass="form-control" value="%{nguoidung.tendangnhap}"/>                            
-							    </div>
-							
-							    <div class="form-group">
-							        <s:password label ="Đặt lại mật khẩu" name="matkhau"  cssClass="form-control" />
-							    </div>
-							
-							    <div class="form-group">
-							        <s:submit value="Sửa" cssClass="btn btn-primary px-5 my-3" />
-							    </div>
+						<s:form action="updateADLoginAction" method="post" validate="true">							
+						 	<input name="manguoidung" type="hidden" value="${nguoidung.manguoidung }" >
+							<div class="form-group">
+						 		<s:textfield label="Tên người dùng" name="tennguoidung" cssClass="form-control" value="%{nguoidung.tennguoidung}" />
+							 </div>	
+							 <div class="form-group">
+						 		<s:textfield label="Tên đăng nhập" name="tendangnhap" cssClass="form-control" value="%{nguoidung.tendangnhap}" />
+							 </div>	
+							 <div class="form-group">
+						 		<s:password label="Mật khẩu" name="matkhau" cssClass="form-control" />
+							 </div>							
+							 <div class="form-group">
+							 	<s:submit value="Sửa" cssClass="btn btn-primary px-5 my-3" />
+							 </div>
 						</s:form>
 					</div>
 				</div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page isELIgnored="false"%>
 <!DOCTYPE html>
@@ -36,24 +37,21 @@
         		<h3 class="text-center">Sửa thông tin tài khoản</h3>
         		<div class="row">
 					<div class="col-md-10 offset-md-1">
-						<form action="updateNVLoginAction" method="post">							
+						<s:form action="updateNVLoginAction" method="post" validate="true">							
 						 	<input name="manguoidung" type="hidden" value="${nguoidung.manguoidung }" >
 							<div class="form-group">
-						 		<lable  class="control-label">Tên người dùng: </lable>
-						 		<input name="tennguoidung" class="form-control" value="${nguoidung.tennguoidung }" >
+						 		<s:textfield label="Tên người dùng" name="tennguoidung" cssClass="form-control" value="%{nguoidung.tennguoidung}" />
 							 </div>	
 							 <div class="form-group">
-						 		<lable  class="control-label">Tên đăng nhập: </lable>
-						 		<input name="tendangnhap" class="form-control" value="${nguoidung.tendangnhap }" >
+						 		<s:textfield label="Tên đăng nhập" name="tendangnhap" cssClass="form-control" value="%{nguoidung.tendangnhap}" />
 							 </div>	
 							 <div class="form-group">
-						 		<lable  class="control-label">Đặt lại mật khẩu </lable>
-						 		<input name="matkhau" class="form-control">
+						 		<s:password label="Mật khẩu" name="matkhau" cssClass="form-control" />
 							 </div>							
 							 <div class="form-group">
-							 	<input type="submit" value="Sửa" class="btn btn-primary px-5 my-3">
+							 	<s:submit value="Sửa" cssClass="btn btn-primary px-5 my-3" />
 							 </div>
-						</form>
+						</s:form>
 					</div>
 				</div>
         	</div>
