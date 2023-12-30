@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,15 +37,10 @@
         		<h3 class="text-center">Thêm thể loại</h3>
         		<div class="row">
 					<div class="col-md-10 offset-md-1">
-						<form action="storeTheLoaiAction" method="post">						
-							 <div class="form-group">
-						 		<lable  class="control-label">Tên thể loại: </lable>
-						 		<input name="tentheloai" class="form-control" >
-							 </div>			 
-							 <div class="form-group">
-							 	<input type="submit" value="Thêm" class="btn btn-primary px-5 my-3">
-							 </div>
-						</form>
+						<s:form action="storeTheLoaiAction" method="post" enctype="multipart/form-data" validate="true">
+                            <s:textfield label="Tên thể loại" name="tentheloai" cols="50" cssClass="form-control"/>                            
+                            <s:submit value="Thêm" cssClass="btn btn-primary my-2 px-5"/>
+                        </s:form>
 					</div>
 				</div>
         	</div>

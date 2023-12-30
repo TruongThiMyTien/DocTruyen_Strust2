@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,25 +39,25 @@
         		<h3 class="text-center">Sửa thông tin chương</h3>
         		<div class="row">
 					<div class="col-md-10 offset-md-1">
-						<form action="updateChuongAction" method="post">
-							<input name="machuong" type="hidden" value="${chuong.machuong}">
-							<input name="masach" type="hidden" value="${chuong.sach.masach}">
-							<div class="form-group">
-						 		<lable  class="control-label">Chương số: </lable>
-						 		<input name="chuongso" class="form-control" value="${chuong.chuongso }" >
-							 </div>
-							 <div class="form-group">
-						 		<lable  class="control-label">Tên chương: </lable>
-						 		<input name="tenchuong" value="${chuong.tenchuong }" class="form-control" >
-							 </div>
-							 <div class="form-group">
-						 		<lable  class="control-label">Nội dung </lable>
-						 		<textarea name="noidung" class="form-control" rows="15">${chuong.noidung}</textarea>
-							 </div>
-							 <div class="form-group">
-							 	<input type="submit" value="Sửa" class="btn btn-primary px-5 my-3">
-							 </div>
-						</form>
+						<s:form action="updateChuongAction" method="post" validate="true">
+						    <s:hidden name="masach" value="%{chuong.sach.masach}" />
+						    <s:hidden name="machuong" value="%{chuong.machuong}" />
+						    <div class="form-group">
+                            <s:textfield label="Chương số" name="chuongso"  cssClass="form-control" value="%{chuong.chuongso}"/>
+						    </div>
+						    
+						    <div class="form-group">
+						        <s:textfield label="Tên chương" name="tenchuong" cssClass="form-control" value="%{chuong.tenchuong}" />
+						    </div>
+						    
+						    <div class="form-group">
+					        <s:textarea label="Nội dung" name="noidung" cssClass="form-control" rows="15" cols="100" value="%{chuong.noidung}"></s:textarea>
+						    </div>
+						    
+						    <div class="form-group">
+						        <s:submit value="Sửa" cssClass="btn btn-primary px-5 my-3" />
+						    </div>
+						</s:form>
 					</div>
 				</div>
         	</div>

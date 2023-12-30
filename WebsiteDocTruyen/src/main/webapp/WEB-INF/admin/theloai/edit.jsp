@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,17 +38,15 @@
         		<h3 class="text-center">Sửa thông tin thể loại</h3>
         		<div class="row">
 					<div class="col-md-10 offset-md-1">
-						<form action="updateTheLoaiAction" method="post">
-							<input name="matheloai" type="hidden" value="${theloai.matheloai}">
-							
-							 <div class="form-group">
-						 		<lable  class="control-label">Tên thể loại: </lable>
-						 		<input name="tentheloai" value="${theloai.tentheloai }" class="form-control" >
-							 </div>							 
-							 <div class="form-group">
-							 	<input type="submit" value="Sửa" class="btn btn-primary px-5 my-3">
-							 </div>
-						</form>
+						<s:form action="updateTheLoaiAction" method="post" validate="true">
+							<s:hidden name="matheloai" value="%{theloai.matheloai}" />						    
+						    <div class="form-group">						        
+						   		<s:textfield label="Tên thể loại" name="tentheloai"  cssClass="form-control" value="%{theloai.tentheloai}" />				
+						    </div>
+						    <div class="form-group">
+						        <s:submit value="Sửa" cssClass="btn btn-primary px-5 my-3" />
+						    </div>
+						</s:form>
 					</div>
 				</div>
         	</div>

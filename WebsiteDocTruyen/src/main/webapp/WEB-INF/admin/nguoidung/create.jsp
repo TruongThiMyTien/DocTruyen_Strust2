@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,28 +37,29 @@
         		<h3 class="text-center">Thêm người dùng</h3>
         		<div class="row">
 					<div class="col-md-10 offset-md-1">
-						<form action="storeNguoiDungAction" method="post">							
-							 <div class="form-group">
-						 		<lable  class="control-label">Tên người dùng: </lable>
-						 		<input name="tennguoidung" class="form-control" >
-							 </div>
-							 <div class="form-group">
-						 		<lable  class="control-label">Tên đăng nhập: </lable>
-						 		<input name="tendangnhap" class="form-control" >
-							 </div>
-							 <div class="form-group">
-						 		<lable  class="control-label">Mật khẩu: </lable>
-						 		<input name="matkhau" class="form-control" >
-							 </div>
-							 <div class="form-group">
-						 		<lable  class="control-label">Quyền: </lable><br />
-				                <input type="radio"  name="quyen" value="2" checked="true"> Nhân viên
-				                <input type="radio"  name="quyen" value="1"> Admin
-							 </div>
-							 <div class="form-group">
-							 	<input type="submit" value="Thêm" class="btn btn-primary px-5 my-3">
-							 </div>
-						</form>
+						<s:form action="storeNguoiDungAction" method="post" validate="true">
+					    <div class="form-group">
+                            <s:textfield label="Tên người dùng" name="tennguoidung" cols="50" cssClass="form-control"/>                            
+					    </div>
+					    
+					    <div class="form-group">
+                            <s:textfield label="Tên đăng nhập" name="tendangnhap" cols="50" cssClass="form-control"/>                            
+					    </div>
+					    
+					    <div class="form-group">
+                            <s:textfield label="Mật khẩu" name="matkhau" cols="50" cssClass="form-control"/>                            
+					    </div>
+					    
+					    <div class="form-group">
+						 	<lable  class="control-label">Quyền: </lable>
+				            <input type="radio"  name="quyen" value="2" checked="true"> Nhân viên
+				            <input type="radio"  name="quyen" value="1"> Admin
+						 </div>
+					    
+					    <div class="form-group">
+					        <s:submit value="Thêm" cssClass="btn btn-primary px-5 my-3" />
+					    </div>
+					</s:form>
 					</div>
 				</div>
         	</div>

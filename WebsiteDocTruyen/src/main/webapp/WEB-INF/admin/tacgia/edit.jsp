@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,17 +37,16 @@
         		<h3 class="text-center">Sửa thông tin tác giả</h3>
         		<div class="row">
 					<div class="col-md-10 offset-md-1">
-						<form action="updateTacGiaAction" method="post">
-							<input name="matacgia" type="hidden" value="${tacgia.matacgia}">
-							
-							 <div class="form-group">
-						 		<lable  class="control-label">Tên tác giả: </lable>
-						 		<input name="tentacgia" value="${tacgia.tentacgia }" class="form-control" >
-							 </div>							 
-							 <div class="form-group">
-							 	<input type="submit" value="Sửa" class="btn btn-primary px-5 my-3">
-							 </div>
-						</form>
+						<s:form action="updateTacGiaAction" method="post" validate="true">
+						    <s:hidden name="matacgia" value="%{tacgia.matacgia}" />						    
+						    <div class="form-group">						        
+						   		<s:textfield label="Tên tác giả" name="tentacgia"  cssClass="form-control" value="%{tacgia.tentacgia}" />				
+						    </div>
+						    <div class="form-group">
+						        <s:submit value="Sửa" cssClass="btn btn-primary px-5 my-3" />
+						    </div>
+						</s:form>
+
 					</div>
 				</div>
         	</div>
