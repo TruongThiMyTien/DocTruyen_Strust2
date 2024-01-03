@@ -90,7 +90,9 @@
 			<result name="profile" type="redirect">profileNVLoginAction</result> 
 		 </action>
 		 
-		 <action name="*NVSachAction" class="Action.SachAction" method="{1}">		 
+		 <action name="*NVSachAction" class="Action.SachAction" method="{1}">
+		 	<interceptor-ref name="fileUpload" />
+			<interceptor-ref name="basicStack" />		 
 			<interceptor-ref name="loginInterceptor" /> 
 			<interceptor-ref name="params" />
 			<interceptor-ref name="roleBasedIntercetor">
@@ -121,6 +123,8 @@
 		 </action>
 		 
 		 <action name="*SachAction" class="Action.SachAction" method="{1}">	
+		 	<interceptor-ref name="fileUpload" />
+			<interceptor-ref name="basicStack" />
 			<interceptor-ref name="loginInterceptor" /> 
 			<interceptor-ref name="params" />
 			<interceptor-ref name="roleBasedIntercetor">

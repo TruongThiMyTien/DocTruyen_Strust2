@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.NguoiDung;
-import Model.Sach;
 
 public class NguoiDungDAO {
 	
@@ -17,7 +16,7 @@ public class NguoiDungDAO {
 		DBService db = new DBService();
 		PreparedStatement statement;
 		try {
-			statement = db.getConn().prepareStatement("SELECT * from NGUOIDUNG WHERE tendangnhap = ? and matkhau = ?");
+			statement = db.getConn().prepareStatement("SELECT * from nguoidung WHERE tendangnhap=? and matkhau=?");
 			statement.setString(1, tendangnhap);
 			statement.setString(2, MD5.getMd5(matkhau));
 			ResultSet rs = db.executeQuery(statement);
@@ -30,7 +29,6 @@ public class NguoiDungDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return nd;
 	}
 	
