@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+  <field name="tennguoidung">
+      <field-validator type="required">
+          <message>Tên người dùng không được bỏ trống</message>
+      </field-validator>      
+  </field>  
+  
+  <field name="tendangnhap">
+      <field-validator type="required">
+          <message>Tên đăng nhập không được bỏ trống</message>
+      </field-validator>      
+  </field>
+
+  
+  </validators>

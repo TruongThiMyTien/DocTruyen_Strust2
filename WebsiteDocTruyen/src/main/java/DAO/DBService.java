@@ -9,9 +9,9 @@ import java.sql.SQLException;
 public class DBService {
 
 	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-	static final String DB_URL =  "jdbc:mysql://localhost:3306/qlsach?allowPublicKeyRetrieval=true&useSSL=false";
-	static final String USER = "root";
-	static final String PASS = "vertrigo";
+	static final String DB_URL =  "jdbc:mysql://192.168.40.136:3306/qlsach?allowPublicKeyRetrieval=true&useSSL=false";
+	static final String USER = "dbuser";
+	static final String PASS = "p@ssword";
 	
 	Connection conn  = null;
 	
