@@ -63,7 +63,7 @@
 			</ul>
 			<form class="d-flex" action="searchSachAction" >
 			  <input name="searchkey" class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
-			  <button class="btn btn-outline-success" type="submit">Tìm</button>
+			  <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
 			</form>
 		  </div>
 		</div>
